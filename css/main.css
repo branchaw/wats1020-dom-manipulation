@@ -11,7 +11,10 @@
 .details {
     display: none;
 }
-
+.thanks {
+   display: none;
+   text-align: center;
+}
 /* Styles to make the page look OK. */
 .form-control {
     height: 25px;

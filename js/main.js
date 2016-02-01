@@ -34,35 +34,49 @@ $( document ).ready(function() {
     // the content contained in the elements with the class "details" in the
     // proper part of the screen.
 
-    $('.view-details').on('click', function(event){
-      console.log(event);
-      var targetElement = event.target;
-      var container = targetElement.parentElement.parentElement;
-      $(container).find('.details').each(function(index, el){
+      $('.view-details').on('click', function(event){
+        console.log(event);
+        var targetElement = event.target;
+        var container = targetElement.parentElement.parentElement;
+        $(container).find('.details').each(function(index, el){
         if ($(el).is(':visible')){
           $(el).fadeOut();
           targetElement.innerText = "View Details"
         } else {
           $(el).fadeIn();
           targetElement.innerText = "Hide Details"
-        }
+          }
+        });
       });
-    });
+      
+      $('#great').on('click', function() {
+        $('.thanks').show();
+        setTimeout(function() {
+          $('.thanks').fadeOut(1500);
+        }, 3000);
+        });
+  
+      $('#greatest').on('click', function() {
+        $('.thanks').show();
+        setTimeout(function() {
+          $('.thanks').fadeOut(1500);
+        }, 3000);
+        });
   
     // Created a function that listens for clicks on the voting buttons and
     // looks at the `data-vote` attribute on each button to see what was voted for,
     // then determines the updated vote breakdown to adjust the progress bars.
    
-    var updateBars = function(voteCounts) {
-    var greatBar=$('.great-progress');
-    var greatestBar=$('.greatest-progress');
-    var greatWidth=voteCounts.great/voteCounts.total;
-    var greatestWidth=voteCounts.greatest/voteCounts.total;
-    greatBar.css('width', greatWidth*100 + '%');
-    greatestBar.css('width', greatestWidth*100 + '%');
-  }
+     var updateBars = function(voteCounts) {
+     var greatBar=$('.great-progress');
+     var greatestBar=$('.greatest-progress');
+     var greatWidth=voteCounts.great/voteCounts.total;
+     var greatestWidth=voteCounts.greatest/voteCounts.total;
+     greatBar.css('width', greatWidth*100 + '%');
+     greatestBar.css('width', greatestWidth*100 + '%');
+    }
    
-  $('.vote').on('click', function(event) {
+    $('.vote').on('click', function(event) {
       var button=$(event.target);
       if(button.data('vote') == 'great') {
         voteCounts.great += 1; 
@@ -71,8 +85,7 @@ $( document ).ready(function() {
         }
         voteCounts.total +=1;
         updateBars(voteCounts);
-    
-    });  
-  
+   
+    }); 
 
 });
